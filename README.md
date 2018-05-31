@@ -32,7 +32,7 @@ int L=0,C=0;
 
 	do{
 		do{ 
-		printf("%c",tabuleiro[L][C]);
+		printf("%c",tabuleiro[L][C]);//
 		C++;
 		}while(C<10);
 	C= 0;
