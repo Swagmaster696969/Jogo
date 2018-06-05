@@ -1,7 +1,7 @@
-include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
+#include <stdio.h>
+#include <stdlib.h>//biblioteca para limpar a tela
+#include <unistd.h> //biblioteca que faz a msm coisa que time.h
+#include <ctype.h>
 
 void player1(){
 printf("Player 1\n");
@@ -11,33 +11,56 @@ void player2(){
 printf("Player 2\n");
 }
 
-char tabuleiro(){
 
-char tabuleiro[10][10]={	{'1', '*', '*', '*', '*', '*', '*', '*', '*', '2',},
-   							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-   							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-   							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-   							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-  							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-  							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-   							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*',},
-   							{'*', '*', '*', '*', '*', '*', '*', '*', '*', '*' }};
-int L=0,C=0;
-
-	do{
-		do{ 
-		printf("%c",tabuleiro[L][C]);
-		C++;
-		}while(C<10);
-	C= 0;
-
-	L++;
-	}while(L<10);
+int Nome(){															/*Ignorar Função*/
+char P1[99],P2[99];
+	printf("\n\nDigite o nome do Jogador 1\n");
+	gets(P1);	
+		printf("Digite o nome do Jogador 2\n");
+		gets(P2);
+			printf("%s\n%s",P1,P2);
 return 0;
 }
 
-continuar(){
+
+int tabuleiro(int ordem){
+
+char tabuleiro[12][12]={	{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
+							{'X', '1', '*', '*', '*', '*', '*', '*', '*', '*', '2', 'X'},
+   							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+   							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+   							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+   							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+  							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+  							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+   							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+   							{'X', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', 'X'},
+							{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},};
+//int P1 L=2,C=2;	P2 L=2,C==12
+
+//char G	gold =1 100%	Termina o jogo							HP=5
+//char F	Fire = 			Ilumina os 4 quadrados ao redor
+//char T	Trap =			-1HP
+int L=0, C=0;
+	do{
+		do{ 
+		printf("%c  ",tabuleiro[L][C]);
+		C++;
+		}while(C<12);
+	C= 0;
+	printf("\n");
+	L++;
+	}while(L<12);
+
+
+	if (ordem==1)
+		player1();
+	else
+		player2();
+}
+
+int continuar(){
 int unic;
 printf("Gostaria de Jogar Novamente?\n1\tSim\n2\tNao\n");
 scanf("%d",&unic);
@@ -46,24 +69,25 @@ scanf("%d",&unic);
 	scanf("%d",&unic);
 	}
 		if (unic==1)
-		
+		return 1; 
 			else if(unic==2)
 			return 0;
 }
 
-
-
-
 int main(){
 
-printf("Bem vindo ao joguinho, o programa vai escolher aleatoriamente quem inicia e eh nois");
-tabuleiro();
-sleep(5);
+printf("O programa vai escolher aleatoriamente quem comeca o jogo\n\n");
+//Nome();
+																		//sleep(5);
 system("cls");
 int unic=rand()%2==0;
 	if (unic==0)
-	player1();
+	tabuleiro(1);//player 1
 		else
-		player2();
-continuar();
+		tabuleiro(2);//player 2
+if(continuar()==1)
+main();
+else
+return 0;
+
 }
